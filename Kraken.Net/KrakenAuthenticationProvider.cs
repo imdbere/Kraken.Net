@@ -21,7 +21,7 @@ namespace Kraken.Net
             {
                 lock (nonceLock)
                 {
-                    var nonce = DateTime.UtcNow.Ticks;
+                    var nonce = (long) DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
                     if (nonce == lastNonce)
                         nonce += 1;
 
