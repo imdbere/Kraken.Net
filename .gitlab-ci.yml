@@ -8,4 +8,4 @@ build:
     - dotnet nuget push "*.nupkg" --source gitlab
   artifacts:
     paths:
-      - "./*.snupkg"
+      - "./Kraken.Net/*.snupkg"
