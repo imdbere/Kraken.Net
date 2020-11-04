@@ -228,7 +228,7 @@ namespace Kraken.Net.Objects
         /// <summary>
         /// Withdrawal is on hold pending review
         /// </summary>
-        [EnumMember(Value = "onhold")]
+        [EnumMember(Value = "on-hold")]
         OnHold
     }
 }
