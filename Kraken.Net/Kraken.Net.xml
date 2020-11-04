@@ -417,6 +417,26 @@
             <param name="ct">Cancellation token</param>
             <returns>Array with methods for deposit</returns>
         </member>
+        <member name="M:Kraken.Net.Interfaces.IKrakenClient.GetWithdrawalStatus(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get status withdrawals for an asset
+            </summary>
+            <param name="asset">Asset to get withdrawal info for</param>
+            <param name="withdrawalMethod">The withdrawal method</param>
+            <param name="twoFactorPassword">Password or authentication app code if enabled</param>
+            <param name="ct">Cancellation token</param>
+            <returns>Withdrawal status list</returns>
+        </member>
+        <member name="M:Kraken.Net.Interfaces.IKrakenClient.GetWithdrawalStatusAsync(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get status withdrawals for an asset
+            </summary>
+            <param name="asset">Asset to get withdrawal info for</param>
+            <param name="withdrawalMethod">The withdrawal method</param>
+            <param name="twoFactorPassword">Password or authentication app code if enabled</param>
+            <param name="ct">Cancellation token</param>
+            <returns>Withdrawal status list</returns>
+        </member>
         <member name="M:Kraken.Net.Interfaces.IKrakenClient.GetDepositAddresses(System.String,System.String,System.Boolean,System.String,System.Threading.CancellationToken)">
             <summary>
             Get deposit addresses for an asset
@@ -1075,6 +1095,26 @@
             <param name="ct">Cancellation token</param>
             <returns>Deposit status list</returns>
         </member>
+        <member name="M:Kraken.Net.KrakenClient.GetWithdrawalStatus(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get status withdrawals for an asset
+            </summary>
+            <param name="asset">Asset to get withdrawal info for</param>
+            <param name="withdrawalMethod">The withdrawal method</param>
+            <param name="twoFactorPassword">Password or authentication app code if enabled</param>
+            <param name="ct">Cancellation token</param>
+            <returns>Withdrawal status list</returns>
+        </member>
+        <member name="M:Kraken.Net.KrakenClient.GetWithdrawalStatusAsync(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get status withdrawals for an asset
+            </summary>
+            <param name="asset">Asset to get withdrawal info for</param>
+            <param name="withdrawalMethod">The withdrawal method</param>
+            <param name="twoFactorPassword">Password or authentication app code if enabled</param>
+            <param name="ct">Cancellation token</param>
+            <returns>Withdrawal status list</returns>
+        </member>
         <member name="M:Kraken.Net.KrakenClient.PlaceOrder(System.String,Kraken.Net.Objects.OrderSide,Kraken.Net.Objects.OrderType,System.Decimal,System.Nullable{System.UInt32},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.String,System.Threading.CancellationToken)">
             <summary>
             Place a new order
@@ -1605,6 +1645,36 @@
         <member name="F:Kraken.Net.Objects.LedgerEntryType.Rollover">
             <summary>
             Rollover
+            </summary>
+        </member>
+        <member name="T:Kraken.Net.Objects.WithdrawalStatusProp">
+            <summary>
+            Additional status properties (if available)
+            </summary>
+        </member>
+        <member name="F:Kraken.Net.Objects.WithdrawalStatusProp.CancelPending">
+            <summary>
+            Cancelation requested
+            </summary>
+        </member>
+        <member name="F:Kraken.Net.Objects.WithdrawalStatusProp.Canceled">
+            <summary>
+            Canceled
+            </summary>
+        </member>
+        <member name="F:Kraken.Net.Objects.WithdrawalStatusProp.CancelDenied">
+            <summary>
+            Cancelation requested but was denied
+            </summary>
+        </member>
+        <member name="F:Kraken.Net.Objects.WithdrawalStatusProp.Return">
+            <summary>
+            A return transaction initiated by Kraken; it cannot be canceled
+            </summary>
+        </member>
+        <member name="F:Kraken.Net.Objects.WithdrawalStatusProp.OnHold">
+            <summary>
+            Withdrawal is on hold pending review
             </summary>
         </member>
         <member name="T:Kraken.Net.Objects.KrakenAssetInfo">
@@ -2795,6 +2865,66 @@
         <member name="P:Kraken.Net.Objects.KrakenUserTrade.Trades">
             <summary>
             Trade ids
+            </summary>
+        </member>
+        <member name="T:Kraken.Net.Objects.KrakenWitdrawalStatus">
+            <summary>
+            withdrawal status info
+            </summary>
+        </member>
+        <member name="P:Kraken.Net.Objects.KrakenWitdrawalStatus.Method">
+            <summary>
+            The name of the withdrawal method
+            </summary>
+        </member>
+        <member name="P:Kraken.Net.Objects.KrakenWitdrawalStatus.AssetClass">
+            <summary>
+            The class of the asset
+            </summary>
+        </member>
+        <member name="P:Kraken.Net.Objects.KrakenWitdrawalStatus.Asset">
+            <summary>
+            The asset name
+            </summary>
+        </member>
+        <member name="P:Kraken.Net.Objects.KrakenWitdrawalStatus.ReferenceId">
+            <summary>
+            Reference id
+            </summary>
+        </member>
+        <member name="P:Kraken.Net.Objects.KrakenWitdrawalStatus.TransactionId">
+            <summary>
+            Transaction id
+            </summary>
+        </member>
+        <member name="P:Kraken.Net.Objects.KrakenWitdrawalStatus.TransactionInfo">
+            <summary>
+            Info about the transaction
+            </summary>
+        </member>
+        <member name="P:Kraken.Net.Objects.KrakenWitdrawalStatus.Amount">
+            <summary>
+            The amount involved in the withdrawal
+            </summary>
+        </member>
+        <member name="P:Kraken.Net.Objects.KrakenWitdrawalStatus.Fee">
+            <summary>
+            The fee paid for the withdrawal
+            </summary>
+        </member>
+        <member name="P:Kraken.Net.Objects.KrakenWitdrawalStatus.Timestamp">
+            <summary>
+            The timestamp
+            </summary>
+        </member>
+        <member name="P:Kraken.Net.Objects.KrakenWitdrawalStatus.Status">
+            <summary>
+            Status of the transaction
+            </summary>
+        </member>
+        <member name="P:Kraken.Net.Objects.KrakenWitdrawalStatus.StatusProp">
+            <summary>
+            Additional status properties (if available)
             </summary>
         </member>
         <member name="T:Kraken.Net.Objects.Socket.KrakenSocketEvent`1">

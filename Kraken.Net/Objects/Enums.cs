@@ -1,4 +1,6 @@
-﻿namespace Kraken.Net.Objects
+﻿using System.Runtime.Serialization;
+
+namespace Kraken.Net.Objects
 {
     /// <summary>
     /// The time interval of kline data
@@ -196,5 +198,37 @@
         /// Rollover
         /// </summary>
         Rollover
+    }
+
+    /// <summary>
+    /// Additional status properties (if available)
+    /// </summary>
+    public enum WithdrawalStatusProp
+    {
+        /// <summary>
+        /// Cancelation requested
+        /// </summary>
+        [EnumMember(Value = "cancel-pending")]
+        CancelPending,
+        /// <summary>
+        /// Canceled
+        /// </summary>
+        [EnumMember(Value = "canceled")]
+        Canceled,
+        /// <summary>
+        /// Cancelation requested but was denied
+        /// </summary>
+        [EnumMember(Value = "cancel-denied")]
+        CancelDenied,
+        /// <summary>
+        /// A return transaction initiated by Kraken; it cannot be canceled
+        /// </summary>
+        [EnumMember(Value = "return")]
+        Return,
+        /// <summary>
+        /// Withdrawal is on hold pending review
+        /// </summary>
+        [EnumMember(Value = "onhold")]
+        OnHold
     }
 }

@@ -659,6 +659,39 @@ namespace Kraken.Net
         }
 
         /// <summary>
+        /// Get status withdrawals for an asset
+        /// </summary>
+        /// <param name="asset">Asset to get withdrawal info for</param>
+        /// <param name="withdrawalMethod">The withdrawal method</param>
+        /// <param name="twoFactorPassword">Password or authentication app code if enabled</param>
+        /// <param name="ct">Cancellation token</param>
+        /// <returns>Withdrawal status list</returns>
+
+        public WebCallResult<IEnumerable<KrakenWitdrawalStatus>> GetWithdrawalStatus(string asset, string? withdrawalMethod = null, string? twoFactorPassword = null, CancellationToken ct = default) => GetWithdrawalStatusAsync(asset, withdrawalMethod, twoFactorPassword, ct).Result;
+
+        /// <summary>
+        /// Get status withdrawals for an asset
+        /// </summary>
+        /// <param name="asset">Asset to get withdrawal info for</param>
+        /// <param name="withdrawalMethod">The withdrawal method</param>
+        /// <param name="twoFactorPassword">Password or authentication app code if enabled</param>
+        /// <param name="ct">Cancellation token</param>
+        /// <returns>Withdrawal status list</returns>
+        public async Task<WebCallResult<IEnumerable<KrakenWitdrawalStatus>>> GetWithdrawalStatusAsync(string asset, string? withdrawalMethod = null, string? twoFactorPassword = null, CancellationToken ct = default)
+        {
+            asset.ValidateNotNull(nameof(asset));
+            var parameters = new Dictionary<string, object>()
+            {
+                {"asset", asset}
+            };
+
+            parameters.AddOptionalParameter("method", withdrawalMethod);
+            parameters.AddOptionalParameter("otp", twoFactorPassword ?? _otp);
+
+            return await Execute<IEnumerable<KrakenWitdrawalStatus>>(GetUri("/0/private/WithdrawStatus"), HttpMethod.Post, ct, parameters, true).ConfigureAwait(false);
+        }
+
+        /// <summary>
         /// Place a new order
         /// </summary>
         /// <param name="symbol">The symbol the order is on</param>
