@@ -20,7 +20,7 @@ namespace Kraken.Net
     public class KrakenSocketClient: SocketClient, IKrakenSocketClient
     {
         #region fields
-        private static readonly KrakenSocketClientOptions defaultOptions = new KrakenSocketClientOptions();
+        private static KrakenSocketClientOptions defaultOptions = new KrakenSocketClientOptions();
         private static KrakenSocketClientOptions DefaultOptions => defaultOptions.Copy<KrakenSocketClientOptions>();
         #endregion
 
@@ -36,7 +36,7 @@ namespace Kraken.Net
         /// Create a new instance of KrakenSocketClient using provided options
         /// </summary>
         /// <param name="options">The options to use for this client</param>
-        public KrakenSocketClient(KrakenSocketClientOptions options) : base(options, options.ApiCredentials == null ? null : new KrakenAuthenticationProvider(options.ApiCredentials))
+        public KrakenSocketClient(KrakenSocketClientOptions options) : base("Kraken", options, options.ApiCredentials == null ? null : new KrakenAuthenticationProvider(options.ApiCredentials))
         {
             AddGenericHandler("Connection", (connection, token) => { });
             AddGenericHandler("HeartBeat", (connection, token) => { });
@@ -44,6 +44,15 @@ namespace Kraken.Net
         #endregion
 
         #region methods
+        /// <summary>
+        /// Set the default options to be used when creating new socket clients
+        /// </summary>
+        /// <param name="options">The options to use for new clients</param>
+        public static void SetDefaultOptions(KrakenSocketClientOptions options)
+        {
+            defaultOptions = options;
+        }
+
         /// <summary>
         /// Subscribe to ticker updates
         /// </summary>
@@ -63,6 +72,15 @@ namespace Kraken.Net
 
             return await Subscribe(new KrakenSubscribeRequest("ticker", NextId(), symbol), null, false, handler).ConfigureAwait(false);
         }
+
+        public async Task<CallResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(string[] symbols, Action<KrakenSocketEvent<KrakenStreamTick>> handler)
+        {
+            foreach(var symbol in symbols)
+                symbol.ValidateKrakenWebsocketSymbol();
+
+            return await Subscribe(new KrakenSubscribeRequest("ticker", NextId(), symbols), null, false, handler).ConfigureAwait(false);
+        }
+
 
         /// <summary>
         /// Subscribe to kline updates

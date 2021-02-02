@@ -26,14 +26,14 @@ namespace Kraken.Net.Interfaces
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         /// <returns>Server time</returns>
-        CallResult<DateTime> GetServerTime(CancellationToken ct = default);
+        WebCallResult<DateTime> GetServerTime(CancellationToken ct = default);
 
         /// <summary>
         /// Get the server time
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         /// <returns>Server time</returns>
-        Task<CallResult<DateTime>> GetServerTimeAsync(CancellationToken ct = default);
+        Task<WebCallResult<DateTime>> GetServerTimeAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get a list of assets and info about them
@@ -565,5 +565,27 @@ namespace Kraken.Net.Interfaces
         /// <param name="ct">Cancellation token</param>
         /// <returns>Cancel result</returns>
         Task<WebCallResult<KrakenCancelResult>> CancelOrderAsync(string orderId, string? twoFactorPassword = null, CancellationToken ct = default);
+
+        /// <summary>
+        /// Withdraw funds
+        /// </summary>
+        /// <param name="asset">The asset being withdrawn</param>
+        /// <param name="key">The withdrawal key name, as set up on your account</param>
+        /// <param name="amount">The amount to withdraw, including fees</param>
+        /// <param name="twoFactorPassword">Password or authentication app code if enabled</param>
+        /// <param name="ct">Cancellation token</param>
+        /// <returns>Withdraw reference id</returns>
+        WebCallResult<KrakenWithdraw> WithdrawFunds(string asset, string key, decimal amount, string? twoFactorPassword = null, CancellationToken ct = default);
+
+        /// <summary>
+        /// Withdraw funds
+        /// </summary>
+        /// <param name="asset">The asset being withdrawn</param>
+        /// <param name="key">The withdrawal key name, as set up on your account</param>
+        /// <param name="amount">The amount to withdraw, including fees</param>
+        /// <param name="twoFactorPassword">Password or authentication app code if enabled</param>
+        /// <param name="ct">Cancellation token</param>
+        /// <returns>Withdraw reference id</returns>
+        Task<WebCallResult<KrakenWithdraw>> WithdrawFundsAsync(string asset, string key, decimal amount, string? twoFactorPassword = null, CancellationToken ct = default);
     }
 }

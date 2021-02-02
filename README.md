@@ -46,18 +46,37 @@ Implementations from third parties:
 <br />
 <a href="https://github.com/Zaliro/Switcheo.Net">Switcheo</a>
 </td>
-	<td><a href="https://github.com/ridicoulous/LiquidQuoine.Net"><img src="https://github.com/ridicoulous/LiquidQuoine.Net/blob/master/Resources/icon.png?raw=true"></a>
+<td><a href="https://github.com/ridicoulous/LiquidQuoine.Net"><img src="https://github.com/ridicoulous/LiquidQuoine.Net/blob/master/Resources/icon.png?raw=true"></a>
 <br />
 <a href="https://github.com/ridicoulous/LiquidQuoine.Net">Liquid</a>
 </td>
-<td><a href="https://github.com/burakoner/OKEx.Net"><img src="https://raw.githubusercontent.com/burakoner/OKEx.Net/master/Okex.Net/Icon/icon.png"></a>
+<td><a href="https://github.com/ridicoulous/Bitmex.Net"><img src="https://github.com/ridicoulous/Bitmex.Net/blob/master/Bitmex.Net/Icon/icon.png"></a>
+<br />
+<a href="https://github.com/ridicoulous/Bitmex.Net">Bitmex</a>
+</td>
+<td><a href="https://github.com/intelligences/HitBTC.Net"><img src="https://github.com/intelligences/HitBTC.Net/blob/master/src/HitBTC.Net/Icon/icon.png?raw=true"></a>
+<br />
+<a href="https://github.com/intelligences/HitBTC.Net">HitBTC</a>
+</td>
+<td><a href="https://github.com/EricGarnier/LiveCoin.Net"><img src="https://github.com/EricGarnier/LiveCoin.Net/blob/master/LiveCoin.Net/Icon/icon.png?raw=true"></a>
+<br />
+<a href="https://github.com/EricGarnier/LiveCoin.Net">LiveCoin</a>
+</td>
+<td><a href="https://github.com/burakoner/OKEx.Net"><img src="https://github.com/burakoner/OKEx.Net/blob/master/Okex.Net/Icon/icon.png?raw=true"></a>
 <br />
 <a href="https://github.com/burakoner/OKEx.Net">OKEx</a>
 </td>
-	</td>
-	<td><a href="https://github.com/ridicoulous/Bitmex.Net"><img src="https://github.com/ridicoulous/Bitmex.Net/blob/master/Bitmex.Net/Icon/icon.png"></a>
+<td><a href="https://github.com/burakoner/Chiliz.Net"><img src="https://github.com/burakoner/Chiliz.Net/blob/master/Chiliz.Net/Icon/icon.png?raw=true"></a>
 <br />
-<a href="https://github.com/ridicoulous/Bitmex.Net">Bitmex</a>
+<a href="https://github.com/burakoner/Chiliz.Net">Chiliz</a>
+</td>
+<td><a href="https://github.com/burakoner/BtcTurk.Net"><img src="https://github.com/burakoner/BtcTurk.Net/blob/master/BtcTurk.Net/Icon/icon.png?raw=true"></a>
+<br />
+<a href="https://github.com/burakoner/BtcTurk.Net">BtcTurk</a>
+</td>
+<td><a href="https://github.com/burakoner/Thodex.Net"><img src="https://github.com/burakoner/Thodex.Net/blob/main/Thodex.Net/Icon/icon.png?raw=true"></a>
+<br />
+<a href="https://github.com/burakoner/Thodex.Net">Thodex</a>
 </td>
 </tr>
 </table>
@@ -92,6 +111,43 @@ After installing it's time to actually use it. To get started you have to add th
 Kraken.Net provides two clients to interact with the Kraken API. The `KrakenClient` provides all rest API calls. The  `KrakenSocketClient`  provides functions to interact with the websocket provided by the Kraken API. Both clients are disposable and as such can be used in a `using` statement.
 
 ## Release notes
+* Version 1.2.3 - 22 jan 2021
+    * Updated for ICommonKline
+
+* Version 1.2.2 - 14 jan 2021
+    * Updated CryptoExchange.Net
+
+* Version 1.2.1 - 22 dec 2020
+    * Added missing SetDefaultOptions for socket client
+    * Fixed symbol name check for ETH2.S/ETH
+
+* Version 1.2.0 - 21 dec 2020
+    * Update CryptoExchange.Net
+    * Updated to latest IExchangeClient
+
+* Version 1.1.9 - 11 dec 2020
+    * Updated CryptoExchange.Net
+    * Implemented IExchangeClient
+
+* Version 1.1.8 - 19 nov 2020
+    * Updated CryptoExchange.Net
+
+* Version 1.1.7 - 09 nov 2020
+    * Fix string values for order book checksum
+
+* Version 1.1.6 - 09 nov 2020
+    * Fixed symbol validation
+    * Added string value properties to orderbook for checksum validation
+
+* Version 1.1.5 - 08 Oct 2020
+    * Fixed withdraw endpoint
+
+* Version 1.1.4 - 08 Oct 2020
+    * Added withdraw method
+    * Fix close timestamp orders
+    * Added OrderMin property on pair
+    * Updated CryptoExchange.Net
+
 * Version 1.1.3 - 28 Aug 2020
     * Updated CryptoExchange.Net
 
