@@ -996,28 +996,6 @@ namespace Kraken.Net
                 result.ResponseHeaders, result.Data?.Select(d => new KrakenBalance() { Asset = d.Key, Balance = d.Value}), result.Error);
         }
 
-		/// <summary>
-		/// Withdraw funds
-		/// </summary>
-		/// <param name="asset">The name of the asset being withdrawn</param>
-		/// <param name="withdrawalKeyName">Withdrawal key name, as set up on your account</param>
-		/// <param name="amount">Amount to withdraw, including fees</param>
-		/// <param name="twoFactorPassword">Password or authentication app code if enabled</param>
-		/// <param name="ct">Cancellation token</param>
-		/// <returns>Withdrawal result</returns>
-		public async Task<WebCallResult<KrakenWithdrawalResult>> Withdraw(string asset, string withdrawalKeyName, decimal amount, string? twoFactorPassword = null, CancellationToken ct = default)
-		{
-			var parameters = new Dictionary<string, object>()
-			{
-				{ "asset", asset },
-				{ "key", withdrawalKeyName },
-				{ "amount", amount.ToString(CultureInfo.InvariantCulture) },
-			};
-
-			parameters.AddOptionalParameter("otp", twoFactorPassword ?? _otp);
-			return await Execute<KrakenWithdrawalResult>(GetUri("/0/private/Withdraw"), HttpMethod.Post, ct, parameters, true).ConfigureAwait(false);
-		}
-
         #endregion
         /// <inheritdoc />
         protected override void WriteParamBody(IRequest request, Dictionary<string, object> parameters, string contentType)
