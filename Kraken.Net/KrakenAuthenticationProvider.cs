@@ -69,7 +69,12 @@ namespace Kraken.Net
                 nonceParamsBytes = sha.ComputeHash(Encoding.UTF8.GetBytes(np));
             var pathBytes = Encoding.UTF8.GetBytes(uri.Split(new[] { ".com" }, StringSplitOptions.None)[1]);
             var allBytes = pathBytes.Concat(nonceParamsBytes).ToArray();
-            var sign = encryptor.ComputeHash(allBytes);
+
+            byte[] sign;
+            lock(encryptor) 
+            {
+				sign = encryptor.ComputeHash(allBytes);
+            }
 
             result.Add("API-Sign", Convert.ToBase64String(sign));
             return result;
